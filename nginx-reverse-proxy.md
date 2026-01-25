@@ -55,3 +55,57 @@ Nginx (port 80)
   ↓
 Node.js app (port 3000)
 ```
+
+# SetUp Reverse proxy with nginx:
+## Install Nginx
+- One EC2 SSH:
+```
+sudo apt update
+sudo apt install -y nginx
+```
+- Check status: `sudo systemctl status nginx`
+## Test Nginx
+- open browser: `http://<PUBLIC-IP>`
+- You should see:
+
+“Welcome to nginx!”
+
+✅ This confirms:
+
+Port 80 is open
+
+Nginx is receiving traffic
+
+Security group is correct
+
+## Make sure Node app is running
+## Configure Nginx as reverse proxy
+- Open Default config file:
+`sudo nano /etc/nginx/sites-available/default`
+- replace with:
+```
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+- Tips to select all and delete in nano file: `https://superuser.com/questions/196425/how-do-i-select-all-text-from-a-file-with-nano`
+## Test Nginx Configuration
+`sudo nginx -t`
+- Reload Nginx (do this everytime nginx setting change):
+`sudo systemctl reload nginx`
+## FInal test:
+http://<PUBLIC-IP>
+http://<PUBLIC-IP>/health
+http://<PUBLIC-IP>/api/time
