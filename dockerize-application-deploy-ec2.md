@@ -41,7 +41,7 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
 - Build docker image
-`docker build -t node-backend-test-app`
+`docker build -t node-backend-test-app .`
 - Run container:
 ```
 docker run -d \
@@ -49,3 +49,7 @@ docker run -d \
   -p 3000:3000 \
   node-backend-test-app
 ```
+- stop the running container:
+`docker stop node-backend`
+- remove it:
+`docker rm node-backend`

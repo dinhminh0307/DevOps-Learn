@@ -23,6 +23,12 @@ app.get("/api/time", (req, res) => {
   });
 });
 
+app.get("/api/greeting", (req, res) => {
+  res.json({
+    serverTime: 'Hello World',
+  });
+});
+
 // Start server
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
