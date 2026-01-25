@@ -100,6 +100,8 @@ server {
     }
 }
 ```
+- It mean “Listen on port 80.
+When a request comes in, forward it to my Node.js app on port 3000, and send the response back to the user.”
 - Tips to select all and delete in nano file: `https://superuser.com/questions/196425/how-do-i-select-all-text-from-a-file-with-nano`
 ## Test Nginx Configuration
 `sudo nginx -t`
