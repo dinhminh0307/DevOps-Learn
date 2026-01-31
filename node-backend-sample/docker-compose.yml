@@ -11,6 +11,7 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_NAME=myapp
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/myapp
     depends_on:
       - db
     restart: unless-stopped
