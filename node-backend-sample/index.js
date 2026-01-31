@@ -1,4 +1,5 @@
 const express = require("express");
+const { pool } = require("./cfg/db-cfg");
 
 const app = express();
 
