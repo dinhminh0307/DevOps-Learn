@@ -39,6 +39,18 @@ app.get("/db-check", async (req, res) => {
   }
 });
 
+app.get("/api/users", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM users ORDER BY created_at DESC");
+    res.json({ 
+      users: result.rows,
+      count: result.rows.length 
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 // Start server
 app.listen(PORT, "0.0.0.0", () => {

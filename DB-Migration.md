@@ -84,7 +84,7 @@ up → apply change
 down → rollback change
 ## Step5: run migration inside docker setup
 - Because DB is in Docker, run migrations inside the backend container.
-`docker compose exec backend npm run migrate`
+`docker-compose exec backend npm run migrate`
 - Expected:
 ```
 Migrating files:
@@ -93,7 +93,7 @@ Migrating files:
 DB schema now exists.
 ## Step6: Verify
 Connect to DB container::
-`docker compose exec db psql -U postgres -d myapp`
+`docker-compose exec db psql -U postgres -d myapp`
 Then:
 `\dt`
 exit:
