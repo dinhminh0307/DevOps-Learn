@@ -29,6 +29,16 @@ app.get("/api/greeting", (req, res) => {
   });
 });
 
+app.get("/db-check", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.json({ dbTime: result.rows[0] });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 // Start server
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
