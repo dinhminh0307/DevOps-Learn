@@ -81,10 +81,10 @@ No IPs. No ports. No chaos.
 ```
 ## Rebuild & Start Everything
 - Stop old container:
-`docker compose down`
+`docker-compose down`
 - build and start:
-`docker compose up -d --build`
+`docker-compose up -d --build`
 - check status:
-`docker compose ps`
+`docker-compose ps`
 ## Test DB connection:
 `http://<ELASTIC-IP>/db-check`
