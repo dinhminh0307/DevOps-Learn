@@ -1,9 +1,0 @@
-{
-  "defaultEnv": {
-    "host": "db",
-    "user": "postgres",
-    "password": "postgres",
-    "database": "myapp",
-    "port": 5432
-  }
-}
