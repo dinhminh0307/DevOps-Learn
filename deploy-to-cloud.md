@@ -102,3 +102,6 @@ PM2 restarts your app 🚀
 👉 Zero human action needed
 
 This is mandatory in production systems.
+
+- Remove Pm2 from startup script:
+`pm2 unstartup`
