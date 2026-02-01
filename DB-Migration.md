@@ -98,3 +98,35 @@ Then:
 `\dt`
 exit:
 `\q`
+
+## Bugs and Issue tips
+### Docker Compose containers not auto-starting
+- Even with restart: always, the containers won't start if Docker Compose isn't running the services. You have two main options:
+- Create a systemd service to manage your Docker Compose stack:
+```
+[Unit]
+Description=Docker Compose Application Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/ubuntu/DevOps-Learn/node-backend-sample
+ExecStart=/usr/local/bin/docker-compose up -d
+ExecStop=/usr/local/bin/docker-compose down
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
+```
+- Copy the systemd service file to your EC2 instance:
+`sudo cp /path/to/docker-compose-app.service /etc/systemd/system/`
+- Enable and start the service:
+```
+sudo systemctl daemon-reload
+sudo systemctl enable docker-compose-app.service
+sudo systemctl start docker-compose-app.service
+```
+- check status
+`sudo systemctl status docker-compose-app.service`
